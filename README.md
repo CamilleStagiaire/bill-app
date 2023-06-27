@@ -18,9 +18,22 @@ https://github.com/CamilleStagiaire/bill-app.git
     _ live-server
     _ npm run test
     _ npm i -g jest-cli
+    _ jest src/__tests__/your_test_file.js
 
 
+## Comptes et utilisateurs :
 
+Vous pouvez vous connecter en utilisant les comptes:
+
+### administrateur : 
+```
+utilisateur : admin@test.tld 
+mot de passe : admin
+```
+### employé :
+```
+utilisateur : employee@test.tld
+mot de passe : employee
 
 
 # Compétences évaluées:
