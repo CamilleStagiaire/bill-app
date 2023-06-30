@@ -20,6 +20,16 @@ https://github.com/CamilleStagiaire/bill-app.git
     _ npm i -g jest-cli
     _ jest src/__tests__/your_test_file.js
 
+* Debug :
+- [Bug report] - Bills : affichage par ordre décroissant
+- [Bug report] - Login : connexion admin
+- [Bug Hunt] - Bills : contrôle des extensions
+- [Bug Hunt] - Dashboard : navigation admins dans le dashboard
+
+
+* Tests unitaires et d'intégration :
+
+
 
 ## Comptes et utilisateurs :
 
