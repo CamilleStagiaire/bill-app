@@ -26,9 +26,17 @@ https://github.com/CamilleStagiaire/bill-app.git
 - [Bug Hunt] - Bills : contrôle des extensions
 - [Bug Hunt] - Dashboard : navigation admins dans le dashboard
 
+* Tests unitaires et d'intégration Bills.js :
+- Finir le test d'intégration "Then bill icon in vertical layout should be highlighted"
+- Test unitaire "Then handleClickNewBill should navigate to new bill"
+- Test unitaire "Then a click event listener should be attached to the eye icon"
+- Test d'intégration "Integration test - Then getBills should retrieve and format bills from API"
+- Test d'intégration "Integration test - Then getBills should throw an error for bad dates"
 
-* Tests unitaires et d'intégration :
-
+* Tests unitaires et d'intégration NewBill.js :
+- Construire le test unitaire "Then 'envoyer une note de frais' text should be present on the page"
+- Test unitaire "Then handleChangeFile should return an alert for incorrect file format"
+- Test d'intégration "Integration test - Then it should POST a new bill"
 
 
 ## Comptes et utilisateurs :

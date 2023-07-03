@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import "@testing-library/jest-dom";
 
 import { screen, waitFor } from "@testing-library/dom";
 import BillsUI from "../views/BillsUI.js";
@@ -71,7 +70,13 @@ describe("Given I am connected as an employee", () => {
       expect(dates).toEqual(datesSorted);
     });
 
-    test("Then getBills should retrieve and format bills from API", async () => {
+    test("Then handleClickNewBill should navigate to new bill", () => {
+      const buttonNewBill = screen.getByTestId("btn-new-bill");
+      userEvent.click(buttonNewBill);
+      expect(mockOnNavigate).toHaveBeenCalledWith(ROUTES_PATH["NewBill"]);
+    });
+
+    test("Integration test - Then getBills should retrieve and format bills from API", async () => {
       const mockBillsList = [
         { date: "2023-01-01", status: "pending" },
         { date: "2023-02-01", status: "accepted" },
@@ -91,13 +96,7 @@ describe("Given I am connected as an employee", () => {
       ]);
     });
 
-    test("Then handleClickNewBill should navigate to new bill", () => {
-      const buttonNewBill = screen.getByTestId("btn-new-bill");
-      userEvent.click(buttonNewBill);
-      expect(mockOnNavigate).toHaveBeenCalledWith(ROUTES_PATH["NewBill"]);
-    });
-
-    test("Then getBills should throw an error for bad dates", async () => {
+    test("Integration test - Then getBills should throw an error for bad dates", async () => {
       jest.mock("../app/format.js", () => ({
         formatDate: jest.fn((date) => {
           if (date === "bad date") {
@@ -153,6 +152,5 @@ describe("Given I am connected as an employee", () => {
       expect(mockFind).toHaveBeenCalled();
       expect(mockHtml).toHaveBeenCalled();
     });
-    
   });
 });

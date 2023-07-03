@@ -6,6 +6,7 @@ export default class NewBill {
     this.document = document
     this.onNavigate = onNavigate
     this.store = store
+    this.localStorage = localStorage
     const formNewBill = this.document.querySelector(`form[data-testid="form-new-bill"]`)
     formNewBill.addEventListener("submit", this.handleSubmit)
     const file = this.document.querySelector(`input[data-testid="file"]`)
@@ -28,7 +29,7 @@ export default class NewBill {
     }
 
     const formData = new FormData()
-    const email = JSON.parse(localStorage.getItem("user")).email
+    const email = JSON.parse(this.localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
 
@@ -50,7 +51,7 @@ export default class NewBill {
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
-    const email = JSON.parse(localStorage.getItem("user")).email
+    const email = JSON.parse(this.localStorage.getItem("user")).email
     const bill = {
       email,
       type: e.target.querySelector(`select[data-testid="expense-type"]`).value,
