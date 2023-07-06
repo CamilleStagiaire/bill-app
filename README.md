@@ -38,6 +38,7 @@ https://github.com/CamilleStagiaire/bill-app.git
 - Test unitaire "Then handleChangeFile should return an alert for incorrect file format"
 - Test d'intégration "Integration test - Then it should POST a new bill"
 
+* Test End-to-End
 
 ## Comptes et utilisateurs :
 

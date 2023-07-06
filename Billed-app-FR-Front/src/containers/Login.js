@@ -25,9 +25,9 @@ export default class Login {
     }
     this.localStorage.setItem("user", JSON.stringify(user))
     this.login(user)
-      .catch(
-        (err) => this.createUser(user)
-      )
+      // .catch(
+      //   (err) => this.createUser(user)
+      // )
       .then(() => {
         this.onNavigate(ROUTES_PATH['Bills'])
         this.PREVIOUS_LOCATION = ROUTES_PATH['Bills']
@@ -47,9 +47,9 @@ export default class Login {
     }
     this.localStorage.setItem("user", JSON.stringify(user))
     this.login(user)
-      .catch(
-        (err) => this.createUser(user)
-      )
+      // .catch(
+      //   (err) => this.createUser(user)
+      // )
       .then(() => {
         this.onNavigate(ROUTES_PATH['Dashboard'])
         this.PREVIOUS_LOCATION = ROUTES_PATH['Dashboard']
@@ -68,6 +68,12 @@ export default class Login {
       })).then(({jwt}) => {
         localStorage.setItem('jwt', jwt)
       })
+      .catch(error => {
+        if (error.message === 'Cannot authenticate user') {
+          alert('Mot de passe incorrect');
+        }
+        throw error;
+      });
     } else {
       return null
     }
