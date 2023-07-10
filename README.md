@@ -19,6 +19,7 @@ https://github.com/CamilleStagiaire/bill-app.git
     _ npm run test
     _ npm i -g jest-cli
     _ jest src/__tests__/your_test_file.js
+-esLint
 
 * Debug :
 - [Bug report] - Bills : affichage par ordre décroissant
@@ -26,17 +27,29 @@ https://github.com/CamilleStagiaire/bill-app.git
 - [Bug Hunt] - Bills : contrôle des extensions
 - [Bug Hunt] - Dashboard : navigation admins dans le dashboard
 
-* Tests unitaires et d'intégration Bills.js :
-- Finir le test d'intégration "Then bill icon in vertical layout should be highlighted"
-- Test unitaire "Then handleClickNewBill should navigate to new bill"
-- Test unitaire "Then a click event listener should be attached to the eye icon"
-- Test d'intégration "Integration test - Then getBills should retrieve and format bills from API"
-- Test d'intégration "Integration test - Then getBills should throw an error for bad dates"
+* Tests Bills.js :
+- Tests d'intégration:
+    "Then bill icon in vertical layout should be highlighted" _ Test à finir
+    "Then it should fetch bills from the mock API GET"
+    "Then it should throw an error for bad dates"
+    "Then it should fetch bills from an API and fail with a 404 message error"
+    "Then it should fetch messages from an API and fail with a 500 message error"
 
-* Tests unitaires et d'intégration NewBill.js :
-- Construire le test unitaire "Then 'envoyer une note de frais' text should be present on the page"
-- Test unitaire "Then handleChangeFile should return an alert for incorrect file format"
-- Test d'intégration "Integration test - Then it should POST a new bill"
+- Tests unitaires :
+    "Then bills should be ordered from earliest to latest"_ Test déja fourni
+    "Then handleClickNewBill should navigate to new bill"
+    "Then a click event listener should be attached to the eye icon"
+ 
+
+* Tests NewBill.js :
+- Tests unitaires :
+    "Then 'envoyer une note de frais' text should be present on the page" _ Test à construire
+    "Then handleChangeFile should return an alert for incorrect file format"
+
+- Tests d'intégration:
+    "Then it should successfully POST a new bill"
+    "Then handleChangeFile should fail with 404 error"
+    "Then handleSubmit should fail with 500 error"
 
 * Test End-to-End
 
