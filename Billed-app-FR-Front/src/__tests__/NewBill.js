@@ -66,7 +66,7 @@ describe("Given I am connected as an employee", () => {
         const localStorageMock = {
           getItem: jest.fn((key) => {
             if (key === "user") {
-              return JSON.stringify({ type: "employee", email: "a@a" });
+              return JSON.stringify({ type: "employee", email: "employee@test.tld" });
             }
             return null;
           }),
@@ -139,7 +139,7 @@ describe("Given I am connected as an employee", () => {
           };
           const localStorageMock = {
             getItem: jest.fn(() =>
-              JSON.stringify({ type: "Employee", email: "employee@billed.com" })
+              JSON.stringify({ type: "Employee", email: "employee@test.tld" })
             ),
             setItem: jest.fn(),
           };
@@ -179,7 +179,7 @@ describe("Given I am connected as an employee", () => {
           };
           const localStorageMock = {
             getItem: jest.fn(() =>
-              JSON.stringify({ type: "Employee", email: "employee@billed.com" })
+              JSON.stringify({ type: "Employee", email: "employee@test.tld" })
             ),
             setItem: jest.fn(),
           };

@@ -1,0 +1,25 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true,
+        "node": true,
+        "jquery": true
+    },
+    "extends": [
+    "eslint:recommended",
+    "prettier"
+    ],
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars": "off"
+    },
+    "globals": {
+        "onNavigate": "writable"
+    }
+}

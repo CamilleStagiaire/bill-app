@@ -62,9 +62,11 @@ const mockedBills = {
       }])
 
   },
+  // eslint-disable-next-line no-unused-vars
   create(bill) {
     return Promise.resolve({fileUrl: 'https://localhost:3456/images/test.jpg', key: '1234'})
   },
+  // eslint-disable-next-line no-unused-vars
   update(bill) {
     return Promise.resolve({
       "id": "47qAXb6fIm2zOKkLzMro",

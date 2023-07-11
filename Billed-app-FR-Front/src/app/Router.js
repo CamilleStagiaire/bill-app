@@ -60,6 +60,7 @@ export default () => {
     }
   }
 
+  // eslint-disable-next-line no-unused-vars
   window.onpopstate = (e) => {
     const user = JSON.parse(localStorage.getItem('user'))
     if (window.location.pathname === "/" && !user) {

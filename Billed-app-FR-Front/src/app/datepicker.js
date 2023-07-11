@@ -3,8 +3,10 @@ const SECOND = 1000;
 const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
+// eslint-disable-next-line no-unused-vars
 const WEEK = DAY * 7;
 
+// eslint-disable-next-line no-unused-vars
 const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const weekdays_short = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -21,6 +23,7 @@ Date.prototype.getWeekNumber = function () {
 };
 
 // DATEPICKER
+// eslint-disable-next-line no-unused-vars
 class Datepicker {
     constructor(host, s) {
         const t = this;

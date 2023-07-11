@@ -8,6 +8,7 @@ export default class Logout {
     $('#layout-disconnect').click(this.handleClick)
   }
   
+  // eslint-disable-next-line no-unused-vars
   handleClick = (e) => {
     this.localStorage.clear()
     this.onNavigate(ROUTES_PATH['Login'])
