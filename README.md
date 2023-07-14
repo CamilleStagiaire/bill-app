@@ -25,20 +25,20 @@ https://github.com/CamilleStagiaire/bill-app.git
 - [Bug report] - Bills : affichage par ordre décroissant
 - [Bug report] - Login : connexion admin
 - [Bug Hunt] - Bills : contrôle des extensions
-- [Bug Hunt] - Dashboard : navigation admins dans le dashboard
+- [Bug Hunt] - Dashboard : navigation admin dans le dashboard
 
 * Tests Bills.js :
 - Tests d'intégration:
-    "Then bill icon in vertical layout should be highlighted" _ Test à finir
     "Then it should fetch bills from the mock API GET"
     "Then it should throw an error for bad dates"
-    "Then it should fetch bills from an API and fail with a 404 message error"
-    "Then it should fetch messages from an API and fail with a 500 message error"
+    "Then getBills should fail with a 404 error"
+    "Then getBills should fail with a 500 error"
 
 - Tests unitaires :
+    "Then bill icon in vertical layout should be highlighted" _ Test à finir
     "Then bills should be ordered from earliest to latest"_ Test déja fourni
     "Then handleClickNewBill should navigate to new bill"
-    "Then a click event listener should be attached to the eye icon"
+    "Then handleClickIconEye should be called Then handleClickIconEye should be called when the eye icon is clicked when the eye icon is clicked"
  
 
 * Tests NewBill.js :
@@ -48,7 +48,7 @@ https://github.com/CamilleStagiaire/bill-app.git
 
 - Tests d'intégration:
     "Then it should successfully POST a new bill"
-    "Then handleChangeFile should fail with 404 error"
+    "Then handleSubmit should fail with 404 error"
     "Then handleSubmit should fail with 500 error"
 
 * Test End-to-End

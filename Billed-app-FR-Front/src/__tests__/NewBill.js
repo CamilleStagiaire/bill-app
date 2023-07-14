@@ -66,7 +66,10 @@ describe("Given I am connected as an employee", () => {
         const localStorageMock = {
           getItem: jest.fn((key) => {
             if (key === "user") {
-              return JSON.stringify({ type: "employee", email: "employee@test.tld" });
+              return JSON.stringify({
+                type: "employee",
+                email: "employee@test.tld",
+              });
             }
             return null;
           }),
@@ -112,7 +115,7 @@ describe("Given I am connected as an employee", () => {
         const submitButton = screen.getByTestId("submit");
         userEvent.click(submitButton);
 
-        // Vérifier que la méthode create du store a été appelée avec les données du formulaire
+        // Vérifier que la méthode create a été appelée avec les données du formulaire
         expect(storeMock.bills().create).toHaveBeenCalledWith({
           data: expect.any(FormData),
           headers: {
@@ -129,13 +132,13 @@ describe("Given I am connected as an employee", () => {
       });
 
       describe("When there is an error on the API", () => {
-        test("Then handleChangeFile should fail with 404 error", async () => {
+        test("Then handleSubmit should fail with 404 error", async () => {
           const mockError = new Error("Not found");
           mockError.status = 404;
 
-          const createMock = jest.fn().mockRejectedValue(mockError);
+          const updateMock = jest.fn().mockRejectedValue(mockError);
           const storeMock = {
-            bills: jest.fn(() => ({ create: createMock })),
+            bills: jest.fn(() => ({ update: updateMock })),
           };
           const localStorageMock = {
             getItem: jest.fn(() =>
@@ -151,23 +154,33 @@ describe("Given I am connected as an employee", () => {
             localStorage: localStorageMock,
           });
 
-          const fileInput = screen.getByTestId("file");
-          const file = new File(["mock file content"], "mockFile.jpg", {
-            type: "image/jpeg",
-          });
-          userEvent.upload(fileInput, file);
+          newBill.fileUrl = "http://example.com/image.jpg";
+          newBill.fileName = "image.jpg";
+
+          const form = document.createElement("form");
+          form.innerHTML = `
+            <select data-testid="expense-type"></select>
+            <input data-testid="expense-name">
+            <input data-testid="amount">
+            <input data-testid="datepicker">
+            <input data-testid="vat">
+            <input data-testid="pct">
+            <textarea data-testid="commentary"></textarea>
+          `;
+
+          const event = {
+            preventDefault: jest.fn(),
+            target: form,
+          };
 
           try {
-            await newBill.handleChangeFile({
-              preventDefault: jest.fn(),
-              target: { files: [file], value: file.name },
-            });
+            await newBill.handleSubmit(event);
           } catch (error) {
             expect(error).toEqual(mockError);
             expect(error.status).toEqual(404);
           }
 
-          expect(createMock).toHaveBeenCalled();
+          expect(updateMock).toHaveBeenCalled();
         });
 
         test("Then handleSubmit should fail with 500 error", async () => {

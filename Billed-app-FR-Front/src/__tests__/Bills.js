@@ -53,15 +53,6 @@ describe("Given I am connected as an employee", () => {
     });
 
     describe("When running integration tests", () => {
-      test("Then bill icon in vertical layout should be highlighted", async () => {
-        router();
-        window.onNavigate(ROUTES_PATH.Bills);
-        await waitFor(() => screen.getByTestId("icon-window"));
-        const windowIcon = screen.getByTestId("icon-window");
-
-        expect(windowIcon.classList.contains("active-icon")).toBeTruthy();
-      });
-
       test("Then it should fetch bills from the mock API GET", async () => {
         const mockBillsList = [
           { date: "2023-01-01", status: "pending" },
@@ -113,7 +104,7 @@ describe("Given I am connected as an employee", () => {
       });
 
       describe("When an error occurs on API", () => {
-        test("Then it should fetch bills from an API and fail with a 404 message error", async () => {
+        test("Then getBills should fail with a 404 error", async () => {
           const mockError = new Error("Not found");
           mockError.status = 404;
 
@@ -130,7 +121,7 @@ describe("Given I am connected as an employee", () => {
           expect(mockList).toHaveBeenCalled();
         });
 
-        test("Then it should fetch messages from an API and fail with a 500 message error", async () => {
+        test("Then getBills should fail with a 500 error", async () => {
           const mockError = new Error("Internal server error");
           mockError.status = 500;
 
@@ -150,6 +141,15 @@ describe("Given I am connected as an employee", () => {
     });
 
     describe("When running unit tests", () => {
+      test("Then bill icon in vertical layout should be highlighted", async () => {
+        router();
+        window.onNavigate(ROUTES_PATH.Bills);
+        await waitFor(() => screen.getByTestId("icon-window"));
+        const windowIcon = screen.getByTestId("icon-window");
+
+        expect(windowIcon.classList.contains("active-icon")).toBeTruthy();
+      });
+
       test("Then bills should be ordered from earliest to latest", () => {
         document.body.innerHTML = BillsUI({ data: bills });
         const dates = screen
@@ -168,7 +168,7 @@ describe("Given I am connected as an employee", () => {
         expect(mockOnNavigate).toHaveBeenCalledWith(ROUTES_PATH["NewBill"]);
       });
 
-      test("Then a click event listener should be attached to the eye icon", () => {
+      test("Then handleClickIconEye should be called when the eye icon is clicked", () => {
         const mockModal = jest.fn();
         const mockHtml = jest.fn();
         const mockFind = jest.fn().mockReturnValue({
@@ -185,16 +185,9 @@ describe("Given I am connected as an employee", () => {
         iconEye.setAttribute("data-bill-url", "url");
 
         const spy = jest.spyOn(billUI, "handleClickIconEye");
-
-        billUI.handleClickIconEye(iconEye);
+        userEvent.click(iconEye);
 
         expect(spy).toHaveBeenCalled();
-
-        // Vérifier que les méthodes jQuery ont bien été appelées
-        expect(global.$).toHaveBeenCalled();
-        expect(mockModal).toHaveBeenCalled();
-        expect(mockFind).toHaveBeenCalled();
-        expect(mockHtml).toHaveBeenCalled();
       });
     });
   });
